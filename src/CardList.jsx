@@ -5,20 +5,20 @@ const CardList = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getUsers();
-  }, []);
-
-  // If you add data to array dependency in useEffect, it'll return a infinite loop
-
-  const getUsers = () => {
-    fetch(import.meta.env.VITE_API_URL, {
-      mode: "cors",
-      method: "GET",
-    })
+    getUsers()
       .then((response) => response.json())
       .then((result) => setData(result))
       .catch((error) => console.log("error", error));
+  }, [data.length]);
+
+  const getUsers = () => {
+    return fetch(import.meta.env.VITE_API_URL, {
+      mode: "cors",
+      method: "GET",
+    });
   };
+
+  // If you add data to array dependency in useEffect, it'll return a infinite loop
 
   return (
     <div className="max-w-4xl overflow-x-auto shadow-md sm:rounded-lg mt-8 mb-16">
