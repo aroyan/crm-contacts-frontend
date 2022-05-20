@@ -28,9 +28,9 @@ const CardItem = ({ _id, firstName, lastName, email, address, age }) => {
 
   return (
     <Tr key={_id}>
-      <Th scope="row">
+      <Td>
         {firstName} {lastName}
-      </Th>
+      </Td>
       <Td>{email}</Td>
       <Td>{address}</Td>
       <Td>{age}</Td>
