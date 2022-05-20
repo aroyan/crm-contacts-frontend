@@ -4,7 +4,7 @@ import CardList from "./CardList";
 
 function App() {
   return (
-    <div className="container flex justify-center items-center flex-wrap">
+    <div>
       <AddItem />
       <CardList />
     </div>

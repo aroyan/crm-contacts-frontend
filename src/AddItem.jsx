@@ -25,20 +25,14 @@ export const AddItem = () => {
   };
 
   return (
-    <div className="w-full text-gray-200 flex justify-center mt-4 flex-wrap">
-      <h2
-        className="font-bold cursor-pointer bg-blue-500 p-3 rounded-md"
-        onClick={() => setHide(!hide)}
-      >
-        Add Contact
-      </h2>
+    <div>
+      <h2 onClick={() => setHide(!hide)}>Add Contact</h2>
       {hide && (
-        <div className="w-full flex justify-center mt-4">
+        <div>
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap flex-col max-w-md gap-2">
+            <div>
               <input
                 type="text"
-                className="form-input bg-gray-100 rounded-md border-transparent text-gray-800"
                 placeholder="First Name"
                 value={newFirstName}
                 onChange={(e) => setNewFirstName(e.target.value)}
@@ -46,7 +40,6 @@ export const AddItem = () => {
               />
               <input
                 type="text"
-                className="form-input bg-gray-100 rounded-md border-transparent text-gray-800"
                 placeholder="Last Name"
                 value={newLastName}
                 onChange={(e) => setNewLastName(e.target.value)}
@@ -54,7 +47,6 @@ export const AddItem = () => {
               />
               <input
                 type="email"
-                className="form-input bg-gray-100 rounded-md border-transparent text-gray-800"
                 placeholder="Email"
                 value={newEmail}
                 onChange={(e) => setNewEmail(e.target.value)}
@@ -62,24 +54,17 @@ export const AddItem = () => {
               />
               <input
                 type="text"
-                className="form-input bg-gray-100 rounded-md border-transparent text-gray-800"
                 placeholder="Address"
                 value={newAddress}
                 onChange={(e) => setNewAddress(e.target.value)}
               />
               <input
                 type="number"
-                className="form-input bg-gray-100 rounded-md border-transparent text-gray-800"
                 placeholder="Age"
                 value={newAge}
                 onChange={(e) => setNewAge(e.target.value)}
               />
-              <button
-                type="submit"
-                className="py-3 px-5 bg-blue-600 rounded-lg"
-              >
-                Add
-              </button>
+              <button type="submit">Add</button>
             </div>
           </form>
         </div>
