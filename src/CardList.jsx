@@ -1,4 +1,13 @@
 import React, { useEffect, useState } from "react";
+import {
+  TableContainer,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Box,
+} from "@chakra-ui/react";
 import CardItem from "./CardItem";
 
 const CardList = () => {
@@ -21,20 +30,20 @@ const CardList = () => {
   // If you add data to array dependency in useEffect, it'll return a infinite loop
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Address</th>
-            <th scope="col">Age</th>
-            <th scope="col">
-              <span>Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
+    <TableContainer mt={"8"}>
+      <Table variant={"striped"}>
+        <Thead>
+          <Tr>
+            <Th scope="col">Name</Th>
+            <Th scope="col">Email</Th>
+            <Th scope="col">Address</Th>
+            <Th scope="col">Age</Th>
+            <Th scope="col">
+              <Box>Edit</Box>
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
           {data.map((item) => (
             <CardItem
               key={item._id}
@@ -46,9 +55,9 @@ const CardList = () => {
               _id={item._id}
             />
           ))}
-        </tbody>
-      </table>
-    </div>
+        </Tbody>
+      </Table>
+    </TableContainer>
   );
 };
 
