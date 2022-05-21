@@ -19,14 +19,14 @@ import React, { useState, useEffect } from "react";
 import { AddIcon } from "@chakra-ui/icons";
 
 export const AddItem = () => {
-  const [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(false);
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newAddress, setNewAddress] = useState("");
   const [newAge, setNewAge] = useState("");
 
-  let handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     fetch(import.meta.env.VITE_API_URL, {

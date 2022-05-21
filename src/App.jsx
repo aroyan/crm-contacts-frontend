@@ -1,13 +1,13 @@
 import { Container } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import AddItem from "./AddItem";
-import CardList from "./CardList";
+import ContactList from "./ContactList";
 
 function App() {
   return (
     <Container py={"8"} maxWidth={"container.md"}>
       <AddItem />
-      <CardList />
+      <ContactList />
     </Container>
   );
 }
