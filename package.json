@@ -2,6 +2,7 @@
   "name": "crm-contacts",
   "private": true,
   "version": "0.0.2",
+  "license": "Apache Lisence 2.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
