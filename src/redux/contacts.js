@@ -7,21 +7,21 @@ export const contactsApi = createApi({
   }),
   endpoints: (builder) => ({
     getContacts: builder.query({
-      query: () => `contact`,
+      query: () => `contacts`,
     }),
     getContactByID: builder.query({
-      query: (id) => `contact/${id}`,
+      query: (id) => `contacts/${id}`,
     }),
     addContact: builder.mutation({
       query: (newContact) => ({
-        url: `/contact`,
+        url: `/contacts`,
         method: "POST",
         body: newContact,
       }),
     }),
     deleteContact: builder.mutation({
       query: (id) => ({
-        url: `contact/${id}`,
+        url: `contacts/${id}`,
         method: "DELETE",
       }),
     }),
