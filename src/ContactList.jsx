@@ -12,7 +12,8 @@ import { useGetContactsQuery } from "./redux/contacts";
 import CardItem from "./CardItem";
 
 const ContactList = () => {
-  const { data, error, isLoading, isSuccess, isError } = useGetContactsQuery();
+  const { data, error, isLoading, isSuccess, isError, refetch } =
+    useGetContactsQuery();
 
   return (
     <TableContainer mt={"8"}>
@@ -21,17 +22,18 @@ const ContactList = () => {
       <Table variant={"striped"}>
         <Thead>
           <Tr>
-            <Th scope="col">Name</Th>
-            <Th scope="col">Email</Th>
-            <Th scope="col">Address</Th>
-            <Th scope="col">Age</Th>
-            <Th scope="col">Edit</Th>
+            <Th>No.</Th>
+            <Th>Name</Th>
+            <Th>Email</Th>
+            <Th>Address</Th>
+            <Th>Age</Th>
+            <Th>Edit</Th>
           </Tr>
         </Thead>
         <Tbody>
           {isSuccess &&
             data &&
-            data.map((item) => (
+            data.map((item, i) => (
               <CardItem
                 key={item._id}
                 firstName={item.firstName}
@@ -40,6 +42,7 @@ const ContactList = () => {
                 address={item.address}
                 age={item.age}
                 _id={item._id}
+                contactIndex={i + 1}
               />
             ))}
         </Tbody>

@@ -15,7 +15,10 @@ import {
   PopoverBody,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
-import { useDeleteContactMutation } from "./redux/contacts";
+import {
+  useDeleteContactMutation,
+  useGetContactsQuery,
+} from "./redux/contacts";
 
 const CardItem = ({
   _id,
@@ -26,16 +29,8 @@ const CardItem = ({
   age,
   contactIndex,
 }) => {
-  const [deleteContact, deleteContactResult] = useDeleteContactMutation();
-
-  const handleDelete = () => {
-    fetch(`${import.meta.env.VITE_API_URL}/${_id}`, {
-      method: "DELETE",
-      mode: "cors",
-    }).then((res) => {
-      res.json().then((res) => console.log(res));
-    });
-  };
+  const [deleteContact] = useDeleteContactMutation();
+  const { refetch } = useGetContactsQuery();
 
   return (
     <Tr key={_id}>
@@ -62,10 +57,9 @@ const CardItem = ({
               <PopoverCloseButton />
               <PopoverBody textAlign={"end"}>
                 <Button
-                  onClick={(e) => {
-                    e.preventDefault();
+                  onClick={() => {
                     deleteContact(_id);
-                    console.log("Deleted");
+                    refetch();
                   }}
                   colorScheme={"red"}
                 >

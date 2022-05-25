@@ -13,34 +13,35 @@ import {
   Text,
   useColorModeValue,
   Link,
+  Toast,
 } from "@chakra-ui/react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-import React, { useState, useEffect } from "react";
 import { AddIcon } from "@chakra-ui/icons";
+import React, { useState, useEffect } from "react";
+import { useAddContactMutation, useGetContactsQuery } from "./redux/contacts";
 
 export const AddItem = () => {
-  const [hide, setHide] = useState(false);
+  // const [hide, setHide] = useState(false);
   const [newFirstName, setNewFirstName] = useState("");
   const [newLastName, setNewLastName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newAddress, setNewAddress] = useState("");
   const [newAge, setNewAge] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const [addContact] = useAddContactMutation();
+  const { refetch } = useGetContactsQuery();
 
-    fetch(import.meta.env.VITE_API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        firstName: newFirstName,
-        lastName: newLastName,
-        email: newEmail,
-        address: newAddress,
-        age: newAge,
-      }),
-    }).then(() => console.log("contact added"));
+  const sentPayload = {
+    firstName: newFirstName,
+    lastName: newLastName,
+    email: newEmail,
+    address: newAddress,
+    age: newAge,
+  };
 
+  const addHandler = async () => {
+    await addContact(sentPayload);
+    refetch();
     setNewFirstName("");
     setNewLastName("");
     setNewEmail("");
@@ -56,13 +57,14 @@ export const AddItem = () => {
         p={"2"}
         bg={"blue.200"}
         borderRadius="lg"
-        onClick={() => setHide(!hide)}
+        // onClick={() => setHide(!hide)}
         fontWeight="bold"
         color={"blackAlpha.900"}
       >
         Add Contact <AddIcon />
       </Text>
-      {hide && (
+      {
+        // hide &&
         <Flex minH={"100vh"} align={"center"} justify={"center"}>
           <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
             <Stack align={"center"}>
@@ -72,7 +74,7 @@ export const AddItem = () => {
             </Stack>
             <Box
               as="form"
-              onSubmit={handleSubmit}
+              // onSubmit={addHandler}
               rounded={"lg"}
               bg={useColorModeValue("white", "gray.700")}
               boxShadow={"lg"}
@@ -138,7 +140,8 @@ export const AddItem = () => {
                     _hover={{
                       bg: "blue.500",
                     }}
-                    type="submit"
+                    onClick={addHandler}
+                    // type="submit"
                   >
                     Add
                   </Button>
@@ -147,7 +150,7 @@ export const AddItem = () => {
             </Box>
           </Stack>
         </Flex>
-      )}
+      }
     </>
   );
 };
