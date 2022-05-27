@@ -13,6 +13,15 @@ import {
   PopoverHeader,
   PopoverCloseButton,
   PopoverBody,
+  useToast,
+  Box,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import {
@@ -29,8 +38,11 @@ const CardItem = ({
   age,
   contactIndex,
 }) => {
-  const [deleteContact] = useDeleteContactMutation();
+  const [deleteContact, { isSuccess }] = useDeleteContactMutation();
   const { refetch } = useGetContactsQuery();
+  const toast = useToast();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = React.useRef();
 
   return (
     <Tr key={_id}>
@@ -42,33 +54,42 @@ const CardItem = ({
       <Td>{address}</Td>
       <Td>{age}</Td>
       <Td>
-        <Popover>
-          <PopoverTrigger>
-            <Button colorScheme={"red"}>
-              <DeleteIcon />
-            </Button>
-          </PopoverTrigger>
-          <Portal>
-            <PopoverContent>
-              <PopoverArrow />
-              <PopoverHeader>
-                Are you sure to delete this contact?
-              </PopoverHeader>
-              <PopoverCloseButton />
-              <PopoverBody textAlign={"end"}>
+        <Button onClick={onOpen} colorScheme={"red"}>
+          Delete
+        </Button>
+        <AlertDialog
+          isOpen={isOpen}
+          leastDestructiveRef={cancelRef}
+          onClose={onClose}
+        >
+          <AlertDialogOverlay>
+            <AlertDialogContent>
+              <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                Delete Customer
+              </AlertDialogHeader>
+
+              <AlertDialogBody>
+                Are you sure? You can't undo this action afterwards.
+              </AlertDialogBody>
+
+              <AlertDialogFooter>
+                <Button ref={cancelRef} onClick={onClose}>
+                  Cancel
+                </Button>
                 <Button
+                  colorScheme="red"
                   onClick={() => {
                     deleteContact(_id);
-                    refetch();
+                    isSuccess && onClose() && refetch();
                   }}
-                  colorScheme={"red"}
+                  ml={3}
                 >
-                  Yes
+                  Delete
                 </Button>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
-        </Popover>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialogOverlay>
+        </AlertDialog>
       </Td>
     </Tr>
   );
