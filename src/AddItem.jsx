@@ -72,37 +72,31 @@ export const AddItem = () => {
                 Add Contact
               </Heading>
             </Stack>
-            <Box
-              as="form"
-              // onSubmit={addHandler}
+            <FormControl
               rounded={"lg"}
               bg={useColorModeValue("white", "gray.700")}
               boxShadow={"lg"}
               p={8}
             >
-              <Stack spacing={4}>
-                <HStack>
-                  <Box>
-                    <FormControl id="firstName" isRequired>
-                      <FormLabel>First Name</FormLabel>
-                      <Input
-                        type="text"
-                        value={newFirstName}
-                        onChange={(e) => setNewFirstName(e.target.value)}
-                      />
-                    </FormControl>
-                  </Box>
-                  <Box>
-                    <FormControl id="lastName" isRequired>
-                      <FormLabel>Last Name</FormLabel>
-                      <Input
-                        type="text"
-                        value={newLastName}
-                        onChange={(e) => setNewLastName(e.target.value)}
-                      />
-                    </FormControl>
-                  </Box>
-                </HStack>
+              <Stack spacing={4} as="form" onSubmit={addHandler} method="post">
+                <Flex gap="4" flexWrap={{ base: "wrap", md: "unset" }}>
+                  <FormControl id="firstName" isRequired>
+                    <FormLabel>First Name</FormLabel>
+                    <Input
+                      type="text"
+                      value={newFirstName}
+                      onChange={(e) => setNewFirstName(e.target.value)}
+                    />
+                  </FormControl>
+                  <FormControl id="lastName" isRequired>
+                    <FormLabel>Last Name</FormLabel>
+                    <Input
+                      type="text"
+                      value={newLastName}
+                      onChange={(e) => setNewLastName(e.target.value)}
+                    />
+                  </FormControl>
+                </Flex>
                 <FormControl>
                   <FormLabel>Email address</FormLabel>
                   <Input
@@ -140,14 +134,14 @@ export const AddItem = () => {
                     _hover={{
                       bg: "blue.500",
                     }}
-                    onClick={addHandler}
-                    // type="submit"
+                    // onClick={addHandler}
+                    type="submit"
                   >
                     Add
                   </Button>
                 </Stack>
               </Stack>
-            </Box>
+            </FormControl>
           </Stack>
         </Flex>
       }
