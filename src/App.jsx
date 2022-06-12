@@ -5,7 +5,7 @@ import ContactList from "./ContactList";
 
 function App() {
   return (
-    <Container py={"8"} maxWidth={"container.md"}>
+    <Container py={"8"} maxWidth={"container.lg"}>
       <AddItem />
       <ContactList />
     </Container>
