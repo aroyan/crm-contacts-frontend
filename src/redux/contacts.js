@@ -7,7 +7,7 @@ export const contactsApi = createApi({
   }),
   endpoints: (builder) => ({
     getContacts: builder.query({
-      query: () => `contacts`,
+      query: (page = 0) => `contacts?page=${page}`,
     }),
     getContactByID: builder.query({
       query: (id) => `contacts/${id}`,
