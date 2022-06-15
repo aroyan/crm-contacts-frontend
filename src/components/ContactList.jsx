@@ -11,7 +11,7 @@ import {
   Button,
   Center,
 } from "@chakra-ui/react";
-import { useGetContactsQuery } from "./redux/contacts";
+import { useGetContactsQuery } from "../redux/contacts";
 import CardItem from "./CardItem";
 import { useEffect, useState } from "react";
 

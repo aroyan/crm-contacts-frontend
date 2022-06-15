@@ -27,7 +27,7 @@ import { DeleteIcon } from "@chakra-ui/icons";
 import {
   useDeleteContactMutation,
   useGetContactsQuery,
-} from "./redux/contacts";
+} from "../redux/contacts";
 
 const CardItem = ({
   _id,

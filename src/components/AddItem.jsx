@@ -14,7 +14,7 @@ import {
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { AddIcon } from "@chakra-ui/icons";
 import React, { useState, useEffect } from "react";
-import { useAddContactMutation, useGetContactsQuery } from "./redux/contacts";
+import { useAddContactMutation, useGetContactsQuery } from "../redux/contacts";
 
 export const AddItem = () => {
   const [newFirstName, setNewFirstName] = useState("");
