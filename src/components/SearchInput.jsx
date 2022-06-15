@@ -45,7 +45,7 @@ const SearchInput = () => {
         ))}
       {query === ""
         ? null
-        : data.error && (
+        : data?.error && (
             <Text p="4" m="2" bg="red.400" borderRadius="lg">
               Not found
             </Text>
