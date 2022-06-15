@@ -15,7 +15,6 @@ import { useDebounce } from "../hooks/useDebounce";
 const SearchInput = () => {
   const [query, setQuery] = useState("");
   const { data, error, isLoading, isSuccess } = useSearchContactQuery(query);
-  console.log(data.error);
   return (
     <>
       <FormControl as="form" my="8">
