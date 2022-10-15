@@ -1,16 +1,13 @@
-import { Container } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import AddItem from "./components/AddItem";
-import ContactList from "./components/ContactList";
-import SearchInput from "./components/SearchInput";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
-    <Container py={"8"} maxWidth={"container.lg"}>
-      <AddItem />
-      <ContactList />
-      <SearchInput />
-    </Container>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/detail/:id" element={<Detail />} />
+    </Routes>
   );
 }
 

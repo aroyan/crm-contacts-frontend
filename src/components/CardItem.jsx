@@ -28,6 +28,7 @@ import {
   useDeleteContactMutation,
   useGetContactsQuery,
 } from "../redux/contacts";
+import { useNavigate } from "react-router-dom";
 
 const CardItem = ({
   _id,
@@ -44,6 +45,8 @@ const CardItem = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = React.useRef();
 
+  const navigate = useNavigate();
+
   return (
     <Tr key={_id}>
       <Td>{contactIndex}</Td>
@@ -54,6 +57,9 @@ const CardItem = ({
       <Td>{address}</Td>
       <Td>{age}</Td>
       <Td>
+        <Button onClick={() => navigate(`/detail/${_id}`)} colorScheme={"blue"}>
+          Detail
+        </Button>{" "}
         <Button onClick={onOpen} colorScheme={"red"}>
           Delete
         </Button>
